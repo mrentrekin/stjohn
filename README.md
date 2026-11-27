@@ -12,15 +12,15 @@ A design concept for **Saint John the Baptist Greek Orthodox Church**, 143 East 
 | About Our Church | `about.html` | History, restoration timeline, mission, clergy, patron saint |
 | Worship & Visit | `worship.html` | Service schedule, feasts, map and directions, first-visit FAQ |
 | Iconography & Gallery | `gallery.html` | Filterable photo grid with full-screen viewer |
-| News & Events | `news.html` | Events, articles, weekly bulletin, Facebook feed slot |
+| News & Events | `news.html` | Events, articles, weekly bulletin, Facebook link |
 | Support St. John's | `support.html` | Donation form (one-time or monthly, choice of fund), Preservation Fund, other ways to give |
 
 ## How the brief maps to the build
 
 - **Platform:** the parish prefers Squarespace. Each section here corresponds to a standard Squarespace block (image, gallery, events, blog, form), so volunteers can edit everything without code.
-- **Donations:** the form on the Support page is a mock-up of an embedded **Givebutter** form, with one-time and recurring gifts, separate funds for parish operations and the Preservation Fund, card and digital-wallet payments, and automatic receipts.
-- **Email:** the newsletter sign-up stands in for a **Constant Contact** form.
-- **Social:** striped tiles mark where Instagram and Facebook feeds would be embedded.
+- **Donations:** the Support page form sends donors to the parish's existing secure donation page today; for launch it would be swapped for an embedded **Givebutter** form, with one-time and recurring gifts, separate funds for parish operations and the Preservation Fund, card and digital-wallet payments, and automatic receipts.
+- **Email:** the newsletter sign-up currently opens an email to the parish office asking to join the list; for launch it becomes a **Constant Contact** form.
+- **Social:** the site links to the parish's Facebook page. Instagram, YouTube, and TikTok can be added once the parish opens those accounts.
 - **Placeholders:** text in `[brackets]`, "Times TBA" labels, and striped photo tiles mark content the parish needs to supply.
 
 ## Run it locally

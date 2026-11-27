@@ -27,7 +27,7 @@
     <div>
       <p class="eyebrow">Where your gift goes</p>
       <h2 style="margin:8px 0 14px">Two ways to give</h2>
-      <p class="lede">Pick a fund in the giving form. Every gift is tax-deductible, and you'll get an acknowledgment by email right away.</p>
+      <p class="lede">Pick a fund in the giving form. Every gift supports the life of our parish.</p>
       <div class="fund-cards">
         <div class="fund-card reveal">
           <h3>Parish operations</h3>
@@ -47,14 +47,14 @@
       <h3 style="margin:48px 0 4px">Other ways to give</h3>
       <div class="ways">
         <div class="way reveal"><h4>By check</h4><p>Make it payable to "Greek Orthodox Church of St. John the Baptist" and mail it to 143 East 17th Street, New York, NY 10003.</p></div>
-        <div class="way reveal"><h4>Stewardship pledge</h4><p>Make an annual commitment to the life of the parish. [The stewardship form will be linked here.]</p></div>
+        <div class="way reveal"><h4>Stewardship pledge</h4><p>Make an annual commitment to the life of the parish. <a href="https://stjohn.ny.goarch.org/assets/files/2020%20Stewardship.pdf">Download the stewardship form (PDF)</a></p></div>
         <div class="way reveal"><h4>Legacy &amp; major gifts</h4><p>To make a bequest, a gift of stock, or a naming gift to the Preservation Fund, please <a href="mailto:saintjohn.churchnyc@gmail.com">contact the parish</a>.</p></div>
       </div>
     </div>
 
     <aside class="give-widget" aria-label="Donation form">
       <h3>Make a gift</h3>
-      <p class="small">Secure giving. Here it's a mock-up; on the live site this is the Givebutter form.</p>
+      <p class="small">Choose your gift, then finish on the parish's secure donation page.</p>
       <div class="seg" role="tablist">
         <button class="active" data-freq="once">One-time</button>
         <button data-freq="monthly">Monthly</button>
@@ -73,8 +73,8 @@
         </select>
       </div>
       <button class="btn btn-gold" id="giveBtn">Give $50</button>
-      <div class="wallets"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span><span>PayPal</span><span>ACH</span></div>
-      <div class="secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Encrypted · instant email receipt</div>
+      <div class="wallets"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>PayPal</span></div>
+      <div class="secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure checkout</div>
     </aside>
   </div>
 </section>
@@ -99,7 +99,7 @@ document.querySelectorAll(".amounts button").forEach(b => b.onclick = () => {
   label();
 });
 otherAmt.oninput = label;
-btn.onclick = () => alert("Concept only: this button would open Givebutter's secure checkout with the amount, frequency, and fund already filled in.");
+btn.onclick = () => window.open("https://stjohn.ny.goarch.org/giving/donate", "_blank", "noopener");
 if (new URLSearchParams(location.search).get("fund") === "preservation") document.getElementById("fund").value = "preservation";
 </script>
 </body>

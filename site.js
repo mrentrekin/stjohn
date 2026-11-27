@@ -51,9 +51,9 @@
       <div>
         <p class="eyebrow">Stay connected</p>
         <h3>The weekly parish letter</h3>
-        <p style="color:var(--ink-soft);margin-top:6px">Service times, readings, and parish news, once a week. Unsubscribe anytime.</p>
+        <p style="color:var(--ink-soft);margin-top:6px">Service times, readings, and parish news, once a week. Read the <a href="https://www.bulletinbuilder.org/stjohnbaptistgramercy/current">current bulletin</a> now.</p>
       </div>
-      <form class="nl-form" onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;font-family:var(--serif);font-size:1.3rem;color:var(--wine)&quot;>Thank you — please check your inbox to confirm.</p>'">
+      <form class="nl-form" onsubmit="event.preventDefault();const e=this.querySelector('input').value;location.href='mailto:saintjohn.churchnyc@gmail.com?subject='+encodeURIComponent('Please add me to the parish email list')+'&body='+encodeURIComponent('Please add '+e+' to the St. John the Baptist parish email list. Thank you!');">
         <input type="email" required placeholder="Your email address" aria-label="Email address">
         <button class="btn btn-wine" type="submit">Subscribe</button>
       </form>
@@ -67,9 +67,6 @@
           <p>A parish of the Greek Orthodox Archdiocese of America, Direct Archdiocesan District.</p>
           <div style="display:flex;gap:14px;margin-top:18px">
             <a href="https://www.facebook.com/StJohnBaptistGramercy/" aria-label="Facebook" style="width:20px">${icon.fb}</a>
-            <a href="#" aria-label="Instagram" style="width:20px">${icon.ig}</a>
-            <a href="#" aria-label="YouTube" style="width:20px">${icon.yt}</a>
-            <a href="#" aria-label="TikTok" style="width:20px">${icon.tt}</a>
           </div>
         </div>
         <div>
@@ -84,7 +81,7 @@
         <div>
           <h4>Worship</h4>
           <ul>
-            <li>Sunday Orthros · 9:00 AM</li>
+            <li>Sunday Orthros · 8:45 AM</li>
             <li>Divine Liturgy · 10:00 AM</li>
             <li><a href="worship.html">Full schedule</a></li>
             <li><a href="https://www.bulletinbuilder.org/stjohnbaptistgramercy/current">Weekly bulletin</a></li>
@@ -110,6 +107,11 @@
 
   document.body.insertAdjacentHTML("afterbegin", header);
   document.body.insertAdjacentHTML("beforeend", newsletter + footer);
+
+  // External links open in a new tab
+  document.querySelectorAll('a[href^="http"]').forEach((a) => {
+    if (new URL(a.href).origin !== location.origin) { a.target = "_blank"; a.rel = "noopener"; }
+  });
 
   // Mobile menu
   const toggle = document.querySelector(".menu-toggle");
