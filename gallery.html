@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Iconography &amp; Gallery · St. John the Baptist Greek Orthodox Church</title>
+<meta name="description" content="Photographs of the restored church, its Byzantine iconography, and parish life at St. John the Baptist, NYC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="page-hero" style="padding:0">
+  <div class="hero-bg" style="background-image:url('https://stjohn.ny.goarch.org/assets/images/SJB_Iconostasis_3-5-23.jpg')"></div>
+  <div class="wrap">
+    <p class="eyebrow">Iconography &amp; Gallery</p>
+    <h1>Windows to heaven</h1>
+    <p>The restored church, its Byzantine iconography, and moments from parish life.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="filters reveal" role="tablist">
+      <button class="chip active" data-f="all">All</button>
+      <button class="chip" data-f="icons">Iconography</button>
+      <button class="chip" data-f="arch">Architecture</button>
+      <button class="chip" data-f="life">Parish life</button>
+    </div>
+    <div class="masonry" id="gallery"></div>
+    <p class="center" style="margin-top:30px;color:var(--muted);font-size:.92rem">Striped tiles are slots for the parish's professional photography. Volunteers add images with Squarespace's drag-and-drop gallery.</p>
+  </div>
+</section>
+
+<div class="lightbox" id="lb" aria-hidden="true"><button aria-label="Close">×</button><div><img alt=""><p></p></div></div>
+
+<script src="site.js"></script>
+<script>
+const I = SJ_IMG;
+const items = [
+  { f: "icons", src: I + "SJB_Iconostasis_3-5-23.jpg", cap: "The iconostasis after restoration" },
+  { f: "arch",  src: I + "New%20Church.JPG", cap: "The nave" },
+  { f: "arch",  src: I + "StJohnsOld.jpg", cap: "St. John's in earlier years" },
+  { f: "icons", ph: "Pantokrator", ar: "1/1" },
+  { f: "life",  src: I + "og-blessing.jpg", cap: "A blessing" },
+  { f: "icons", ph: "Platytera", ar: "4/5" },
+  { f: "icons", ph: "St. John the Forerunner", ar: "3/4" },
+  { f: "arch",  ph: "Exterior on East 17th St", ar: "4/3" },
+  { f: "life",  ph: "Feast day procession", ar: "4/3" },
+  { f: "life",  ph: "Coffee hour", ar: "1/1" },
+  { f: "icons", ph: "The Twelve Great Feasts", ar: "3/4" },
+  { f: "arch",  ph: "Chandelier & dome", ar: "4/5" },
+];
+const g = document.getElementById("gallery");
+g.innerHTML = items.map(it => it.src
+  ? `<figure data-f="${it.f}"><img loading="lazy" src="${it.src}" alt="${it.cap}" data-fallback="${it.cap}"><figcaption>${it.cap}</figcaption></figure>`
+  : `<figure data-f="${it.f}" style="cursor:default"><div class="placeholder-tile" style="--ar:${it.ar}"><div><strong>${it.ph}</strong>Photo slot</div></div></figure>`
+).join("");
+
+document.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(x => x.classList.toggle("active", x === c));
+  g.querySelectorAll("figure").forEach(fig => fig.style.display = (c.dataset.f === "all" || fig.dataset.f === c.dataset.f) ? "" : "none");
+}));
+
+const lb = document.getElementById("lb");
+g.addEventListener("click", e => {
+  const img = e.target.closest("figure")?.querySelector("img");
+  if (!img) return;
+  lb.querySelector("img").src = img.src;
+  lb.querySelector("p").textContent = img.alt;
+  lb.classList.add("open");
+});
+lb.addEventListener("click", e => { if (e.target !== lb.querySelector("img")) lb.classList.remove("open"); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("open"); });
+</script>
+</body>
+</html>

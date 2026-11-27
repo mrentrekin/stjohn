@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Support St. John's · St. John the Baptist Greek Orthodox Church</title>
+<meta name="description" content="Give online to St. John the Baptist Greek Orthodox Church: one-time or monthly gifts to parish operations or the $1 million Preservation Fund.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="page-hero" style="padding:0">
+  <div class="hero-bg" style="background-image:url('https://stjohn.ny.goarch.org/assets/images/New%20Church.JPG')"></div>
+  <div class="wrap">
+    <p class="eyebrow">Support St. John's</p>
+    <h1>Help sustain a sacred place in New York</h1>
+    <p>Your gift keeps the lamps lit, the Liturgy celebrated, and the restored church preserved for generations to come.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap give-wrap">
+    <div>
+      <p class="eyebrow">Where your gift goes</p>
+      <h2 style="margin:8px 0 14px">Two ways to give</h2>
+      <p class="lede">Pick a fund in the giving form. Every gift is tax-deductible, and you'll get an acknowledgment by email right away.</p>
+      <div class="fund-cards">
+        <div class="fund-card reveal">
+          <h3>Parish operations</h3>
+          <p style="color:var(--ink-soft)">Supports worship, clergy, utilities, and the ministries that serve our community every week. A monthly gift is one of the most helpful things you can do for the parish.</p>
+        </div>
+        <div class="fund-card reveal" id="preservation" style="border-left-color:var(--wine)">
+          <h3>The Preservation Fund</h3>
+          <p style="color:var(--ink-soft)">A long-term endowment with a goal of <strong>$1,000,000</strong>. Gifts to this fund protect the restored church and its iconography and give the parish lasting financial stability.</p>
+          <div style="margin-top:16px">
+            <div class="progress-figures"><span style="font-family:var(--serif);font-size:1.8rem;color:var(--wine)">$—</span><span style="color:var(--muted)">of $1,000,000</span></div>
+            <div class="bar" style="background:var(--parchment)"><span style="width:12%"></span></div>
+            <p style="font-size:.8rem;color:var(--muted);font-style:italic">The progress figure is a placeholder.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin:48px 0 4px">Other ways to give</h3>
+      <div class="ways">
+        <div class="way reveal"><h4>By check</h4><p>Make it payable to "Greek Orthodox Church of St. John the Baptist" and mail it to 143 East 17th Street, New York, NY 10003.</p></div>
+        <div class="way reveal"><h4>Stewardship pledge</h4><p>Make an annual commitment to the life of the parish. [The stewardship form will be linked here.]</p></div>
+        <div class="way reveal"><h4>Legacy &amp; major gifts</h4><p>To make a bequest, a gift of stock, or a naming gift to the Preservation Fund, please <a href="mailto:saintjohn.churchnyc@gmail.com">contact the parish</a>.</p></div>
+      </div>
+    </div>
+
+    <aside class="give-widget" aria-label="Donation form">
+      <h3>Make a gift</h3>
+      <p class="small">Secure giving. Here it's a mock-up; on the live site this is the Givebutter form.</p>
+      <div class="seg" role="tablist">
+        <button class="active" data-freq="once">One-time</button>
+        <button data-freq="monthly">Monthly</button>
+      </div>
+      <div class="amounts">
+        <button data-amt="25">$25</button><button data-amt="50" class="active">$50</button><button data-amt="100">$100</button>
+        <button data-amt="250">$250</button><button data-amt="500">$500</button><button data-amt="other">Other</button>
+      </div>
+      <div class="field" id="otherField" style="display:none"><label for="otherAmt">Amount</label><input id="otherAmt" type="number" min="1" placeholder="$"></div>
+      <div class="field">
+        <label for="fund">Designate my gift</label>
+        <select id="fund">
+          <option value="operations">Parish operations</option>
+          <option value="preservation">Preservation Fund</option>
+          <option value="candle">Light a candle / in memory of</option>
+        </select>
+      </div>
+      <button class="btn btn-gold" id="giveBtn">Give $50</button>
+      <div class="wallets"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span><span>PayPal</span><span>ACH</span></div>
+      <div class="secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Encrypted · instant email receipt</div>
+    </aside>
+  </div>
+</section>
+
+<script src="site.js"></script>
+<script>
+let amt = 50, freq = "once";
+const btn = document.getElementById("giveBtn"), other = document.getElementById("otherField"), otherAmt = document.getElementById("otherAmt");
+function label() {
+  const a = amt === "other" ? (Number(otherAmt.value) || 0) : amt;
+  btn.textContent = a ? `Give $${a.toLocaleString()}${freq === "monthly" ? " monthly" : ""}` : "Enter an amount";
+}
+document.querySelectorAll(".seg button").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".seg button").forEach(x => x.classList.toggle("active", x === b));
+  freq = b.dataset.freq; label();
+});
+document.querySelectorAll(".amounts button").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".amounts button").forEach(x => x.classList.toggle("active", x === b));
+  amt = b.dataset.amt === "other" ? "other" : Number(b.dataset.amt);
+  other.style.display = amt === "other" ? "" : "none";
+  if (amt === "other") otherAmt.focus();
+  label();
+});
+otherAmt.oninput = label;
+btn.onclick = () => alert("Concept only: this button would open Givebutter's secure checkout with the amount, frequency, and fund already filled in.");
+if (new URLSearchParams(location.search).get("fund") === "preservation") document.getElementById("fund").value = "preservation";
+</script>
+</body>
+</html>
